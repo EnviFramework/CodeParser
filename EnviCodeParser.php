@@ -1,7 +1,10 @@
 <?php
 /**
- * PHPファイルをパースするクラスです
+ * PHPファイルを静的に、パースするクラスです
  *
+ * PHPファイルを静的に展開します。
+ * EnviUnitTestや、ドキュメンターで使用していますが、直接利用されることはありません。
+ * Reflection クラス と違い、読み込む必要が無い代わりに、多くのメモリを消費します。
  *
  * @category   ユーティリティ
  * @package    コードパース
@@ -21,6 +24,9 @@ require dirname(__FILE__).'/CodeParser/EnviParserResult.php';
 
 /**
  * PHPファイルをパースするクラスです
+ *
+ * EnviUnitTestや、ドキュメンターで使用していますが、直接利用されることはありません。
+ * Reflection クラス と違い、読み込む必要が無い代わりに、多くのメモリを消費します。
  *
  *
  * @category   ユーティリティ

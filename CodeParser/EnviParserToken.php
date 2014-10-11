@@ -624,7 +624,7 @@ class EnviParserToken_INTERFACE extends EnviParserTokenWithScopeAndVisibility
         $end_token_id  = $this->getEndTokenId();
         $token_list    = $this->token_result->getTokenList();
 
-        while (isset($token_list[$i]) && $end_token_id <= $i) {
+        while (isset($token_list[$i]) && $end_token_id >= $i) {
             if ($token_list[$i] instanceof EnviParserToken_FUNCTION) {
                 $token_list[$i]->addInterFaceToken($this);
                 $this->function_list[$i] = $token_list[$i];
@@ -643,7 +643,7 @@ class EnviParserToken_INTERFACE extends EnviParserTokenWithScopeAndVisibility
         $end_token_id  = $this->getEndTokenId();
         $token_list    = $this->token_result->getTokenList();
 
-        while (isset($token_list[$i]) && $end_token_id <= $i) {
+        while (isset($token_list[$i]) && $end_token_id >= $i) {
             if ($token_list[$i] instanceof EnviParserToken_CONST) {
                 $token_list[$i]->addInterFaceToken($this);
                 $this->constant_list[$i] = $token_list[$i];
