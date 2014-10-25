@@ -469,28 +469,30 @@ class EnviParserToken_FUNCTION extends EnviParserTokenWithScopeAndVisibility
 
         $this->arguments = array();
         $token_list          = $this->token_result->getTokenList();
-        $type_hint        = NULL;
 
         // Search for first token inside brackets
         $i = $this->id + 2;
         while (!$token_list[$i-1] instanceof EnviParserToken_OPEN_BRACKET) {
             $i++;
         }
-        $is_equal = false;
+
+        $type_hint = NULL;
+        $is_equal  = false;
         while (!$token_list[$i] instanceof EnviParserToken_CLOSE_BRACKET) {
-            if (isset($last_param) && $is_equal) {
+            if ($token_list[$i] instanceof EnviParserToken_COMMA) {
+                $is_equal = false;
+                unset($last_param);
+            } else if (isset($last_param) && $is_equal) {
                 $this->arguments[$last_param]['optional'] = (string)$token_list[$i];
             } elseif ($token_list[$i] instanceof EnviParserToken_STRING) {
                 $type_hint = (string)$token_list[$i];
             } else if ($token_list[$i] instanceof EnviParserToken_VARIABLE) {
                 $last_param = (string)$token_list[$i];
                 $this->arguments[$last_param]['type_hint'] = $type_hint;
-                $this->arguments[$last_param]['optional'] = NULL;
-                $type_hint                             = NULL;
-                $is_equal = false;
+                $this->arguments[$last_param]['optional']  = NULL;
+                $type_hint                                 = NULL;
+                $is_equal                                  = false;
             } else if ($token_list[$i] instanceof EnviParserToken_AMPERSAND) {
-            } else if ($token_list[$i] instanceof EnviParserToken_COMMA) {
-                $is_equal = false;
             } else if ($token_list[$i] instanceof EnviParserToken_WHITESPACE) {
             } else if ($token_list[$i] instanceof EnviParserToken_EQUAL) {
                 $is_equal = true;
