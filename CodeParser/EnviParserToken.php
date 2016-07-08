@@ -1016,3 +1016,9 @@ class EnviParserToken_DOLLAR extends EnviParserToken {}
 class EnviParserToken_CARET extends EnviParserToken {}
 class EnviParserToken_TILDE extends EnviParserToken {}
 class EnviParserToken_BACKTICK extends EnviParserToken {}
+class EnviParserToken_ELLIPSIS extends EnviParserToken {}
+class EnviParserToken_COALESCE extends EnviParserToken {}
+class EnviParserToken_SPACESHIP extends EnviParserToken {}
+class EnviParserToken_YIELD_FROM extends EnviParserToken {}
+
+
